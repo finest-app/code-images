@@ -1,6 +1,6 @@
 // Adapted from https://github.com/shikijs/shiki/blob/main/packages/shiki/src/theme-css-variables.ts
 
-import type { ThemeRegistration } from "@shikijs/core";
+import type { ThemeRegistration } from "shiki/core";
 
 export interface CssVariablesThemeOptions {
   /**
