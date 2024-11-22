@@ -21,7 +21,6 @@ import MintlifyLogo from "../assets/mintlify.svg";
 import MintlifyLogoUrl from "../assets/mintlify.svg?url";
 import { showLineNumbersAtom } from ".";
 import { createCssVariablesTheme } from "../util/theme-css-variables";
-import { BASE_URL } from "@/utils/common";
 
 export const shikiTheme = createCssVariablesTheme({
   name: "css-variables",
@@ -102,7 +101,7 @@ export const THEMES: { [index: string]: Theme } = {
       to: "#1F1F1F",
     },
     icon: VercelLogo,
-    iconUrl: `${BASE_URL}${VercelLogoUrl.src}`,
+    iconUrl: VercelLogoUrl.src,
     font: "geist-mono",
     partner: true,
     syntax: {
@@ -150,7 +149,7 @@ export const THEMES: { [index: string]: Theme } = {
       to: "#000000",
     },
     icon: RabbitLogo,
-    iconUrl: `${BASE_URL}${RabbitLogoUrl.src}`,
+    iconUrl: RabbitLogoUrl.src,
     font: "geist-mono",
     partner: true,
     hidden: true,
@@ -193,7 +192,7 @@ export const THEMES: { [index: string]: Theme } = {
       to: "#121212",
     },
     icon: SupabaseLogo,
-    iconUrl: `${BASE_URL}${SupabaseLogoUrl.src}`,
+    iconUrl: SupabaseLogoUrl.src,
     partner: true,
     font: "ibm-plex-mono",
     syntax: {
@@ -241,7 +240,7 @@ export const THEMES: { [index: string]: Theme } = {
       to: "#36B6F0",
     },
     icon: TailwindLogo,
-    iconUrl: `${BASE_URL}${TailwindLogoUrl.src}`,
+    iconUrl: TailwindLogoUrl.src,
     partner: true,
     lineNumbers: true,
     font: "fira-code",
@@ -268,7 +267,7 @@ export const THEMES: { [index: string]: Theme } = {
       to: "#000",
     },
     icon: OpenAiLogo,
-    iconUrl: `${BASE_URL}${OpenAiLogoUrl.src}`,
+    iconUrl: OpenAiLogoUrl.src,
     partner: true,
     font: "soehne-mono",
     lineNumbers: true,
@@ -315,7 +314,7 @@ export const THEMES: { [index: string]: Theme } = {
       to: "#000",
     },
     icon: MintlifyLogo,
-    iconUrl: `${BASE_URL}${MintlifyLogoUrl.src}`,
+    iconUrl: MintlifyLogoUrl.src,
     partner: true,
     syntax: {
       light: convertToShikiTheme({
@@ -362,7 +361,7 @@ export const THEMES: { [index: string]: Theme } = {
       to: "#000",
     },
     icon: PrismaLogo,
-    iconUrl: `${BASE_URL}${PrismaLogoUrl.src}`,
+    iconUrl: PrismaLogoUrl.src,
     partner: true,
     lineNumbers: true,
     syntax: {
@@ -410,7 +409,7 @@ export const THEMES: { [index: string]: Theme } = {
       to: "#000000",
     },
     icon: ClerkLogo,
-    iconUrl: `${BASE_URL}${ClerkLogoUrl.src}`,
+    iconUrl: ClerkLogoUrl.src,
     partner: true,
     lineNumbers: true,
     font: "geist-mono",
