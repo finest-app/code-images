@@ -81,7 +81,7 @@ export function InfoDialog() {
               <Shortcut keys={["⌘", "S"]}>导出 PNG</Shortcut>
               <Shortcut keys={["⌘", "⇧", "S"]}>导出 SVG</Shortcut>
               {pngClipboardSupported && <Shortcut keys={["⌘", "C"]}>复制图片</Shortcut>}
-              <Shortcut keys={["⌘", "⇧", "C"]}>复制链接</Shortcut>
+              {/* <Shortcut keys={["⌘", "⇧", "C"]}>复制链接</Shortcut> */}
               <Shortcut keys={["?"]}>查看快捷键</Shortcut>
             </div>
           </div>

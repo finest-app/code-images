@@ -145,10 +145,10 @@ const ExportButton: React.FC = () => {
       copyPng();
     }
   });
-  useHotkeys("ctrl+shift+c,cmd+shift+c", (event) => {
-    event.preventDefault();
-    copyUrl();
-  });
+  // useHotkeys("ctrl+shift+c,cmd+shift+c", (event) => {
+  //   event.preventDefault();
+  //   copyUrl();
+  // });
   useHotkeys("ctrl+shift+s,cmd+shift+s", (event) => {
     event.preventDefault();
     saveSvg();
@@ -196,7 +196,7 @@ const ExportButton: React.FC = () => {
               </Kbds>
             </DropdownMenuItem>
           )}
-          <DropdownMenuItem onSelect={dropdownHandler(copyUrl)}>
+          {/* <DropdownMenuItem onSelect={dropdownHandler(copyUrl)}>
             <LinkIcon />
             复制链接
             <Kbds>
@@ -204,7 +204,7 @@ const ExportButton: React.FC = () => {
               <Kbd>⇧</Kbd>
               <Kbd>C</Kbd>
             </Kbds>
-          </DropdownMenuItem>
+          </DropdownMenuItem> */}
           <DropdownMenuSeparator />
           <DropdownMenuSub>
             <DropdownMenuSubTrigger value={SIZE_LABELS[exportSize]}>
