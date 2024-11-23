@@ -63,7 +63,7 @@ const ThemeControl: React.FC = () => {
   );
 
   return (
-    <ControlContainer title="Theme">
+    <ControlContainer title="主题">
       <Select
         value={`${currentTheme.name}`}
         onValueChange={(value) => {
@@ -76,7 +76,7 @@ const ThemeControl: React.FC = () => {
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
-            <SelectLabel>Partners</SelectLabel>
+            <SelectLabel>预设</SelectLabel>
             {partnerThemes
               .filter((theme) => unlockedThemes.includes(theme.id) || !theme.hidden || theme.name === currentTheme.name)
               .map((theme, index) => {

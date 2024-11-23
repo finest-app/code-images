@@ -22,7 +22,7 @@ const PaddingControl: React.FC = () => {
   });
 
   return (
-    <ControlContainer title="Padding">
+    <ControlContainer title="边距">
       <ToggleGroup.Root
         className={styles.toggleGroup}
         type="single"

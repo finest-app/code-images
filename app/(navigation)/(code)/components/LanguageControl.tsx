@@ -26,7 +26,7 @@ const LanguageControl: React.FC = () => {
   });
 
   return (
-    <ControlContainer title="Language">
+    <ControlContainer title="语言">
       <Select
         open={isOpen}
         onOpenChange={(open) => setOpen(open)}
@@ -41,15 +41,15 @@ const LanguageControl: React.FC = () => {
       >
         <SelectTrigger
           size="small"
-          className={cn("w-[146px]", isLoadingLanguage && styles.loadingShimmer)}
+          className={cn("w-48", isLoadingLanguage && styles.loadingShimmer)}
           icon={ChevronUpIcon}
         >
           <SelectValue />
-          {autoDetectLanguage ? "(auto)" : ""}
+          {autoDetectLanguage ? "(自动检测)" : ""}
         </SelectTrigger>
         <SelectContent>
           <SelectItem value="auto-detect">
-            <SelectItemText>Auto-Detect</SelectItemText>
+            <SelectItemText>自动检测</SelectItemText>
           </SelectItem>
           {Object.values(LANGUAGES).map((language, index) => (
             <SelectItem key={index} value={language.name}>

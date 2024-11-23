@@ -13,7 +13,7 @@ const BackgroundControl: React.FC = () => {
   useHotkeys("d", toggleDarkMode);
 
   return (
-    <ControlContainer title="Dark mode">
+    <ControlContainer title="暗色模式">
       <Switch checked={darkMode} onCheckedChange={setDarkMode} />
     </ControlContainer>
   );

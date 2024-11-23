@@ -13,7 +13,7 @@ const BackgroundControl: React.FC = () => {
   });
 
   return (
-    <ControlContainer title="Background">
+    <ControlContainer title="背景">
       <Switch checked={showBackground} onCheckedChange={setShowBackground} />
     </ControlContainer>
   );

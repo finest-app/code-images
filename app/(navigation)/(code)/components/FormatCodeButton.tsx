@@ -22,7 +22,7 @@ const FormatButton: React.FC = () => {
   const handleFormatCode = () => {
     const isSupportedLanguage = formatterSupportedLanguages.includes(selectedLanguage?.name || "");
     if (!isSupportedLanguage) {
-      return toast.error("Formatting is not supported for this language");
+      return toast.error("该语言不支持格式化");
     }
     if (!code || !selectedLanguage) {
       return;
@@ -36,12 +36,12 @@ const FormatButton: React.FC = () => {
         setSelectedLanguage(language);
       }),
       {
-        loading: "Formatting code...",
-        success: "Formatted code!",
+        loading: "正在格式化代码...",
+        success: "代码格式化成功！",
         error: (data) => {
           return (
             <div className="space-y-2 overflow-hidden">
-              <p className="font-medium">Code formatting failed</p>
+              <p className="font-medium">代码格式化失败</p>
               <pre className="w-full overflow-auto text-xs scrollbar-hide bg-gray-a3 p-2.5 rounded">
                 <code className="w-full">{data.message}</code>
               </pre>
@@ -71,7 +71,7 @@ const FormatButton: React.FC = () => {
       )}
     >
       <WandIcon width={16} height={16} />
-      Format Code
+      格式化代码
     </Button>
   );
 };

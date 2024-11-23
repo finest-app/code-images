@@ -41,7 +41,7 @@ const ResizableFrame: React.FC<PropsWithChildren> = ({ children }) => {
 
       setWindowWidth(newWidth);
     },
-    [setWindowWidth]
+    [setWindowWidth],
   );
 
   const clearSelection = useCallback(() => {
@@ -73,7 +73,7 @@ const ResizableFrame: React.FC<PropsWithChildren> = ({ children }) => {
         document.addEventListener("mousemove", mouseMoveHandler);
         document.addEventListener("mouseup", mouseUpHandler);
       },
-    [mouseMoveHandler, mouseUpHandler]
+    [mouseMoveHandler, mouseUpHandler],
   );
 
   return (
@@ -111,7 +111,7 @@ const ResizableFrame: React.FC<PropsWithChildren> = ({ children }) => {
             }}
           >
             <XMarkIcon />
-            Set to auto width
+            自动调整宽度
           </a>
         </div>
       </CSSTransition>

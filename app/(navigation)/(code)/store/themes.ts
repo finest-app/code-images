@@ -452,7 +452,7 @@ export const THEMES: { [index: string]: Theme } = {
   },
   bitmap: {
     id: "bitmap",
-    name: "Bitmap",
+    name: "位图红",
     background: {
       from: "#881616",
       to: "#F1393F",
@@ -496,7 +496,7 @@ export const THEMES: { [index: string]: Theme } = {
   },
   noir: {
     id: "noir",
-    name: "Noir",
+    name: "暗夜黑",
     background: {
       from: "#B1B1B1",
       to: "#181818",
@@ -534,7 +534,7 @@ export const THEMES: { [index: string]: Theme } = {
   },
   ice: {
     id: "ice",
-    name: "Ice",
+    name: "冰晶蓝",
     background: {
       from: "#fff",
       to: "#80deea",
@@ -578,7 +578,7 @@ export const THEMES: { [index: string]: Theme } = {
   },
   sand: {
     id: "sand",
-    name: "Sand",
+    name: "沙漠褐",
     background: {
       from: "#EED5B6",
       to: "#AF8856",
@@ -622,7 +622,7 @@ export const THEMES: { [index: string]: Theme } = {
   },
   forest: {
     id: "forest",
-    name: "Forest",
+    name: "森林绿",
     background: {
       from: "#506853",
       to: "#213223",
@@ -666,7 +666,7 @@ export const THEMES: { [index: string]: Theme } = {
   },
   mono: {
     id: "mono",
-    name: "Mono",
+    name: "素墨灰",
     background: {
       from: "#333",
       to: "#181818",
@@ -704,7 +704,7 @@ export const THEMES: { [index: string]: Theme } = {
   },
   breeze: {
     id: "breeze",
-    name: "Breeze",
+    name: "微风紫",
     background: {
       from: "#CF2F98",
       to: "#6A3DEC",
@@ -742,7 +742,7 @@ export const THEMES: { [index: string]: Theme } = {
   },
   candy: {
     id: "candy",
-    name: "Candy",
+    name: "糖果粉",
     background: {
       from: "#A58EFB",
       to: "#E9BFF8",
@@ -780,7 +780,7 @@ export const THEMES: { [index: string]: Theme } = {
   },
   crimson: {
     id: "crimson",
-    name: "Crimson",
+    name: "绯霞红",
     background: {
       from: "#FF6363",
       to: "#733434",
@@ -818,7 +818,7 @@ export const THEMES: { [index: string]: Theme } = {
   },
   falcon: {
     id: "falcon",
-    name: "Falcon",
+    name: "鹰羽灰",
     background: {
       from: "#BDE3EC",
       to: "#363654",
@@ -856,7 +856,7 @@ export const THEMES: { [index: string]: Theme } = {
   },
   meadow: {
     id: "meadow",
-    name: "Meadow",
+    name: "草原绿",
     background: {
       from: "#59D499",
       to: "#A0872D",
@@ -894,7 +894,7 @@ export const THEMES: { [index: string]: Theme } = {
   },
   midnight: {
     id: "midnight",
-    name: "Midnight",
+    name: "午夜蓝",
     background: {
       from: "#4CC8C8",
       to: "#202033",
@@ -932,7 +932,7 @@ export const THEMES: { [index: string]: Theme } = {
   },
   raindrop: {
     id: "raindrop",
-    name: "Raindrop",
+    name: "雨滴蓝",
     background: {
       from: "#8EC7FB",
       to: "#1C55AA",
@@ -970,7 +970,7 @@ export const THEMES: { [index: string]: Theme } = {
   },
   sunset: {
     id: "sunset",
-    name: "Sunset",
+    name: "落日橙",
     background: {
       from: "#FFCF73",
       to: "#FF7A2F",

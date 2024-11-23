@@ -52,7 +52,7 @@ const ExportButton: React.FC = () => {
       throw new Error("Couldn't find a frame to export");
     }
 
-    setFlashMessage({ icon: <ImageIcon />, message: "Exporting PNG" });
+    setFlashMessage({ icon: <ImageIcon />, message: "正在导出 PNG" });
 
     const dataUrl = await toPng(frameContext.current, {
       pixelRatio: exportSize,
@@ -64,7 +64,7 @@ const ExportButton: React.FC = () => {
   };
 
   const copyPng = async () => {
-    setFlashMessage({ icon: <ClipboardIcon />, message: "Copying PNG" });
+    setFlashMessage({ icon: <ClipboardIcon />, message: "正在复制 PNG" });
     if (!frameContext?.current) {
       throw new Error("Couldn't find a frame to export");
     }
@@ -82,7 +82,7 @@ const ExportButton: React.FC = () => {
 
     await navigator.clipboard.write([clipboardItem]);
 
-    setFlashMessage({ icon: <ClipboardIcon />, message: "PNG Copied to clipboard!", timeout: 2000 });
+    setFlashMessage({ icon: <ClipboardIcon />, message: "PNG 已复制到剪贴板！", timeout: 2000 });
   };
 
   const saveSvg = async () => {
@@ -90,7 +90,7 @@ const ExportButton: React.FC = () => {
       throw new Error("Couldn't find a frame to export");
     }
 
-    setFlashMessage({ icon: <ImageIcon />, message: "Exporting SVG" });
+    setFlashMessage({ icon: <ImageIcon />, message: "正在导出 SVG" });
 
     const dataUrl = await toSvg(frameContext.current);
     download(dataUrl, `${fileName}.svg`);
@@ -113,7 +113,7 @@ const ExportButton: React.FC = () => {
   };
 
   const copyUrl = async () => {
-    setFlashMessage({ icon: <ClipboardIcon />, message: "Copying URL" });
+    setFlashMessage({ icon: <ClipboardIcon />, message: "正在复制链接" });
 
     const url = window.location.toString();
     let urlToCopy = url;
@@ -127,7 +127,7 @@ const ExportButton: React.FC = () => {
 
     navigator.clipboard.writeText(urlToCopy);
 
-    setFlashMessage({ icon: <ClipboardIcon />, message: "URL Copied to clipboard!", timeout: 2000 });
+    setFlashMessage({ icon: <ClipboardIcon />, message: "链接已复制到剪贴板！", timeout: 2000 });
   };
 
   useHotkeys("ctrl+k,cmd+k", (event) => {
@@ -158,7 +158,9 @@ const ExportButton: React.FC = () => {
     <ButtonGroup>
       <Button onClick={handleExportClick} variant="primary" aria-label="Export as PNG">
         <DownloadIcon className="w-4 h-4" />
-        Export <span className="hidden md:inline-block">Image</span>
+        <span>
+          导出<span className="hidden md:inline-block">图片</span>
+        </span>
       </Button>
       <DropdownMenu open={dropdownOpen} onOpenChange={(open) => setDropdownOpen(open)}>
         <DropdownMenuTrigger asChild>
@@ -168,14 +170,16 @@ const ExportButton: React.FC = () => {
         </DropdownMenuTrigger>
         <DropdownMenuContent side="bottom" align="end">
           <DropdownMenuItem onSelect={dropdownHandler(savePng)}>
-            <ImageIcon /> Save PNG{" "}
+            <ImageIcon />
+            导出 PNG
             <Kbds>
               <Kbd>⌘</Kbd>
               <Kbd>S</Kbd>
             </Kbds>
           </DropdownMenuItem>
           <DropdownMenuItem onSelect={dropdownHandler(saveSvg)}>
-            <ImageIcon /> Save SVG
+            <ImageIcon />
+            导出 SVG
             <Kbds>
               <Kbd>⌘</Kbd>
               <Kbd>⇧</Kbd>
@@ -184,7 +188,8 @@ const ExportButton: React.FC = () => {
           </DropdownMenuItem>
           {pngClipboardSupported && (
             <DropdownMenuItem onSelect={dropdownHandler(copyPng)}>
-              <ClipboardIcon /> Copy Image
+              <ClipboardIcon />
+              复制图片
               <Kbds>
                 <Kbd>⌘</Kbd>
                 <Kbd>C</Kbd>
@@ -192,7 +197,8 @@ const ExportButton: React.FC = () => {
             </DropdownMenuItem>
           )}
           <DropdownMenuItem onSelect={dropdownHandler(copyUrl)}>
-            <LinkIcon /> Copy URL
+            <LinkIcon />
+            复制链接
             <Kbds>
               <Kbd>⌘</Kbd>
               <Kbd>⇧</Kbd>
@@ -202,7 +208,8 @@ const ExportButton: React.FC = () => {
           <DropdownMenuSeparator />
           <DropdownMenuSub>
             <DropdownMenuSubTrigger value={SIZE_LABELS[exportSize]}>
-              <ArrowsExpandingIcon /> Size
+              <ArrowsExpandingIcon />
+              倍数
             </DropdownMenuSubTrigger>
             <DropdownMenuSubContent sideOffset={8}>
               <DropdownMenuRadioGroup value={exportSize.toString()}>
