@@ -1,5 +1,0 @@
-{
-  "files": "out/**/*",
-  "from": "//_next/g",
-  "to": "./_next"
-}
