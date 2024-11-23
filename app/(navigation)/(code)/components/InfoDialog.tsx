@@ -30,6 +30,17 @@ export function InfoDialog() {
             <p>支持多种编程语言，内置多种主题，提供暗色模式切换、背景开关、边距调整等功能。</p>
             <p>点击右上角的导出按钮，可以将代码导出为 PNG 格式的截图。</p>
             <p>点击导出按钮右侧的图标，打开导出菜单，可以选择导出截图的格式和质量。</p>
+            <p className="text-gray-12 mt-auto">
+              本工具基于效率工具{" "}
+              <a className="text-brand" href="https://www.raycast.com/" target="_blank">
+                Raycast
+              </a>{" "}
+              的开源项目{" "}
+              <a className="text-brand" href="https://github.com/raycast/ray-so" target="_blank">
+                ray.so
+              </a>{" "}
+              开发。
+            </p>
             {/* <h2 className="text-base font-medium text-gray-12">Contribute</h2>
             <p>
               The project is Open Source and{" "}
