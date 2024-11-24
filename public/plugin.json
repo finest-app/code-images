@@ -1,0 +1,11 @@
+{
+  "main": "index.html",
+  "logo": "icon.png",
+  "features": [
+    {
+      "code": "main",
+      "explain": "代码截图",
+      "cmds": ["code", "images", "screnshot", "代码", "截图"]
+    }
+  ]
+}
