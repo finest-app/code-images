@@ -40,7 +40,7 @@ export default function NavigationLayout({ children }: { children: React.ReactNo
         } as React.CSSProperties
       }
     >
-      <Navigation />
+      {/* <Navigation /> */}
       <main className="flex flex-col min-h-full pt-[50px]">{children}</main>
     </div>
   );
