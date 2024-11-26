@@ -1,4 +1,4 @@
-import { atomWithStorage } from "jotai/utils";
+import { atomWithStorage, createJSONStorage } from "jotai/utils";
 
 export const EXPORT_SIZE_OPTIONS = [2, 4, 6] as const;
 
@@ -14,6 +14,10 @@ export function isExportSize(value: ExportSize | unknown): value is ExportSize {
   return EXPORT_SIZE_OPTIONS.indexOf(value as ExportSize) !== -1;
 }
 
-const exportSizeAtom = atomWithStorage<ExportSize>("size", EXPORT_SIZE_OPTIONS[1]);
+const exportSizeAtom = atomWithStorage<ExportSize>(
+  "size",
+  EXPORT_SIZE_OPTIONS[1],
+  createJSONStorage(() => (utools ? utools.dbStorage : localStorage)),
+);
 
 export { exportSizeAtom };
