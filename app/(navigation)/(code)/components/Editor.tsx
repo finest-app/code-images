@@ -166,7 +166,11 @@ function Editor() {
           setUnlockedThemes([...unlockedThemes, THEMES.rabbit.id]);
         }
         setTheme(THEMES.rabbit);
-        localStorage.setItem("codeTheme", THEMES.rabbit.id);
+
+        utools
+          ? utools.dbStorage.setItem("codeTheme", THEMES.rabbit.id)
+          : localStorage.setItem("codeTheme", THEMES.rabbit.id);
+
         setFlashMessage({
           message: "Evil Rabbit 主题已解锁",
           variant: "unlock",

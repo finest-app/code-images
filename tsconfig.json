@@ -28,7 +28,8 @@
       "@snippets/*": ["./app/(navigation)/snippets/*"],
       "@themes/*": ["./app/(navigation)/themes/*"],
       "@icon/*": ["./app/(navigation)/icon/*"]
-    }
+    },
+    "types": ["utools-api-types"]
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.wasm", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]

@@ -26,7 +26,7 @@ const ThemeControl: React.FC = () => {
 
   const setTheme = (theme: Theme) => {
     atomSetTheme(theme);
-    localStorage.setItem("codeTheme", theme.id);
+    utools ? utools.dbStorage.setItem("codeTheme", theme.id) : localStorage.setItem("codeTheme", theme.id);
   };
 
   useEffect(() => {
