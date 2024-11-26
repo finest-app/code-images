@@ -168,7 +168,7 @@ function Editor() {
         setTheme(THEMES.rabbit);
         localStorage.setItem("codeTheme", THEMES.rabbit.id);
         setFlashMessage({
-          message: "Evil Rabbit Theme Unlocked",
+          message: "Evil Rabbit 主题已解锁",
           variant: "unlock",
           timeout: 2000,
           icon: React.createElement(THEMES.rabbit.icon || "", { style: { color: "black" } }),
