@@ -1014,7 +1014,9 @@ const themeAtom = atomWithHash<Theme>(
   (() => {
     if (typeof window !== "undefined") {
       // Check if a valid theme is stored in localStorage
-      const codeTheme = utools ? utools.dbStorage.getItem("codeTheme") : localStorage.getItem("codeTheme");
+      const codeTheme = window.utools
+        ? window.utools.dbStorage.getItem("codeTheme")
+        : localStorage.getItem("codeTheme");
       if (codeTheme && codeTheme in THEMES) {
         return THEMES[codeTheme as keyof typeof THEMES];
       }
@@ -1027,7 +1029,7 @@ const themeAtom = atomWithHash<Theme>(
     },
     deserialize(key) {
       if (key && key in THEMES) {
-        utools ? utools.dbStorage.setItem("codeTheme", key) : localStorage.setItem("codeTheme", key);
+        window.utools ? window.utools.dbStorage.setItem("codeTheme", key) : localStorage.setItem("codeTheme", key);
         return THEMES[key as keyof typeof THEMES];
       } else {
         return THEMES.candy;

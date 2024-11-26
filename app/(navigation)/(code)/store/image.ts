@@ -17,7 +17,7 @@ export function isExportSize(value: ExportSize | unknown): value is ExportSize {
 const exportSizeAtom = atomWithStorage<ExportSize>(
   "size",
   EXPORT_SIZE_OPTIONS[1],
-  createJSONStorage(() => (utools ? utools.dbStorage : localStorage)),
+  createJSONStorage(() => (window.utools ? window.utools.dbStorage : localStorage)),
 );
 
 export { exportSizeAtom };

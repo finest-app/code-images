@@ -167,8 +167,8 @@ function Editor() {
         }
         setTheme(THEMES.rabbit);
 
-        utools
-          ? utools.dbStorage.setItem("codeTheme", THEMES.rabbit.id)
+        window.utools
+          ? window.utools.dbStorage.setItem("codeTheme", THEMES.rabbit.id)
           : localStorage.setItem("codeTheme", THEMES.rabbit.id);
 
         setFlashMessage({
