@@ -26,7 +26,7 @@ export function InfoDialog() {
         <div className="flex gap-8">
           <div className="flex flex-col gap-3 flex-1 text-[13px] text-gray-11 leading-relaxed">
             <DialogTitle>关于</DialogTitle>
-            <p>Code Images 是一个用于创建代码截图的工具。</p>
+            <p>代码截图是一款专业的代码展示工具，能够将源代码转换成精美的图片，让代码分享更加优雅直观。</p>
             <p>支持多种编程语言，内置多种主题，提供暗色模式切换、背景开关、边距调整等功能。</p>
             <p>点击右上角的导出按钮，可以将代码导出为 PNG 格式的截图。</p>
             <p>点击导出按钮右侧的图标，打开导出菜单，可以选择导出截图的格式和质量。</p>
