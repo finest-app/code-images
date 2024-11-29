@@ -106,11 +106,11 @@ const ExportButton: React.FC = () => {
     };
   };
 
-  // const handleExportClick: MouseEventHandler = (event) => {
-  //   event.preventDefault();
+  const handleExportClick: MouseEventHandler = (event) => {
+    event.preventDefault();
 
-  //   savePng();
-  // };
+    savePng();
+  };
 
   const handleCopyClick: MouseEventHandler = (event) => {
     event.preventDefault();
@@ -161,48 +161,55 @@ const ExportButton: React.FC = () => {
   });
 
   return (
-    <ButtonGroup>
-      <Button onClick={handleCopyClick} variant="primary" aria-label="Copy as PNG">
-        <ClipboardIcon className="size-4" />
+    <>
+      <Button variant="secondary" onClick={handleExportClick} aria-label="Export as PNG">
+        <DownloadIcon className="size-4" />
         <span>
-          复制<span className="hidden md:inline-block">图片</span>
+          下载<span className="hidden md:inline-block">图片</span>
         </span>
       </Button>
-      <DropdownMenu open={dropdownOpen} onOpenChange={(open) => setDropdownOpen(open)}>
-        <DropdownMenuTrigger asChild>
-          <Button variant="primary" aria-label="See other export options">
-            <ChevronDownIcon className="w-4 h-4" />
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent side="bottom" align="end">
-          <DropdownMenuItem onSelect={dropdownHandler(savePng)}>
-            <ImageIcon />
-            导出 PNG
-            <Kbds>
-              <Kbd>⌘</Kbd>
-              <Kbd>S</Kbd>
-            </Kbds>
-          </DropdownMenuItem>
-          <DropdownMenuItem onSelect={dropdownHandler(saveSvg)}>
-            <ImageIcon />
-            导出 SVG
-            <Kbds>
-              <Kbd>⌘</Kbd>
-              <Kbd>⇧</Kbd>
-              <Kbd>S</Kbd>
-            </Kbds>
-          </DropdownMenuItem>
-          {pngClipboardSupported && (
-            <DropdownMenuItem onSelect={dropdownHandler(copyPng)}>
-              <ClipboardIcon />
-              复制图片
+      <ButtonGroup>
+        <Button onClick={handleCopyClick} variant="primary" aria-label="Copy as PNG">
+          <ClipboardIcon className="size-4" />
+          <span>
+            复制<span className="hidden md:inline-block">图片</span>
+          </span>
+        </Button>
+        <DropdownMenu open={dropdownOpen} onOpenChange={(open) => setDropdownOpen(open)}>
+          <DropdownMenuTrigger asChild>
+            <Button variant="primary" aria-label="See other export options">
+              <ChevronDownIcon className="w-4 h-4" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent side="bottom" align="end">
+            <DropdownMenuItem onSelect={dropdownHandler(savePng)}>
+              <ImageIcon />
+              导出 PNG
               <Kbds>
                 <Kbd>⌘</Kbd>
-                <Kbd>C</Kbd>
+                <Kbd>S</Kbd>
               </Kbds>
             </DropdownMenuItem>
-          )}
-          {/* <DropdownMenuItem onSelect={dropdownHandler(copyUrl)}>
+            <DropdownMenuItem onSelect={dropdownHandler(saveSvg)}>
+              <ImageIcon />
+              导出 SVG
+              <Kbds>
+                <Kbd>⌘</Kbd>
+                <Kbd>⇧</Kbd>
+                <Kbd>S</Kbd>
+              </Kbds>
+            </DropdownMenuItem>
+            {/* {pngClipboardSupported && (
+              <DropdownMenuItem onSelect={dropdownHandler(copyPng)}>
+                <ClipboardIcon />
+                复制图片
+                <Kbds>
+                  <Kbd>⌘</Kbd>
+                  <Kbd>C</Kbd>
+                </Kbds>
+              </DropdownMenuItem>
+            )} */}
+            {/* <DropdownMenuItem onSelect={dropdownHandler(copyUrl)}>
             <LinkIcon />
             复制链接
             <Kbds>
@@ -211,25 +218,26 @@ const ExportButton: React.FC = () => {
               <Kbd>C</Kbd>
             </Kbds>
           </DropdownMenuItem> */}
-          <DropdownMenuSeparator />
-          <DropdownMenuSub>
-            <DropdownMenuSubTrigger value={SIZE_LABELS[exportSize]}>
-              <ArrowsExpandingIcon />
-              倍数
-            </DropdownMenuSubTrigger>
-            <DropdownMenuSubContent sideOffset={8}>
-              <DropdownMenuRadioGroup value={exportSize.toString()}>
-                {EXPORT_SIZE_OPTIONS.map((size) => (
-                  <DropdownMenuRadioItem key={size} value={size.toString()} onSelect={() => setExportSize(size)}>
-                    {SIZE_LABELS[size]}
-                  </DropdownMenuRadioItem>
-                ))}
-              </DropdownMenuRadioGroup>
-            </DropdownMenuSubContent>
-          </DropdownMenuSub>
-        </DropdownMenuContent>
-      </DropdownMenu>
-    </ButtonGroup>
+            <DropdownMenuSeparator />
+            <DropdownMenuSub>
+              <DropdownMenuSubTrigger value={SIZE_LABELS[exportSize]}>
+                <ArrowsExpandingIcon />
+                倍数
+              </DropdownMenuSubTrigger>
+              <DropdownMenuSubContent sideOffset={8}>
+                <DropdownMenuRadioGroup value={exportSize.toString()}>
+                  {EXPORT_SIZE_OPTIONS.map((size) => (
+                    <DropdownMenuRadioItem key={size} value={size.toString()} onSelect={() => setExportSize(size)}>
+                      {SIZE_LABELS[size]}
+                    </DropdownMenuRadioItem>
+                  ))}
+                </DropdownMenuRadioGroup>
+              </DropdownMenuSubContent>
+            </DropdownMenuSub>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </ButtonGroup>
+    </>
   );
 };
 
