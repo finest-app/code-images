@@ -22,6 +22,7 @@ import ExportButton from "./components/ExportButton";
 import { NavigationActions } from "@/components/navigation";
 import { InfoDialog } from "./components/InfoDialog";
 import FormatButton from "./components/FormatCodeButton";
+import CustomScrollbar from "./components/CustomScrollbar";
 
 export function Code() {
   const [highlighter, setHighlighter] = useAtom(highlighterAtom);
@@ -38,6 +39,7 @@ export function Code() {
 
   return (
     <>
+      <CustomScrollbar />
       <FrameContextStore>
         <NavigationActions>
           <InfoDialog />

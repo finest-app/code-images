@@ -70,6 +70,9 @@ importers:
       next:
         specifier: 14.2.3
         version: 14.2.3(@babel/core@7.26.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      overlayscrollbars:
+        specifier: ^2.10.1
+        version: 2.10.1
       prettier:
         specifier: ^3.3.3
         version: 3.3.3
@@ -3922,6 +3925,10 @@ packages:
     resolution:
       { integrity: sha512-6IpQ7mKUxRcZNLIObR0hz7lxsapSSIYNZJwXPGeF0mTVqGKFIXj1DQcMoT22S3ROcLyY/rz0PWaWZ9ayWmad9g== }
     engines: { node: ">= 0.8.0" }
+
+  overlayscrollbars@2.10.1:
+    resolution:
+      { integrity: sha512-BQoUAaw533ZbqBIE8LzKtsIiOKzB3pkhA6oS2ol+8THB5b2VO91myEXPlKrQqXQRYHG53f/169fFBNrGZ9tzag== }
 
   p-limit@2.3.0:
     resolution:
@@ -8526,6 +8533,8 @@ snapshots:
       prelude-ls: 1.2.1
       type-check: 0.4.0
       word-wrap: 1.2.5
+
+  overlayscrollbars@2.10.1: {}
 
   p-limit@2.3.0:
     dependencies:
