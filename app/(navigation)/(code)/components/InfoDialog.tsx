@@ -28,8 +28,8 @@ export function InfoDialog() {
             <DialogTitle>关于</DialogTitle>
             <p>代码截图是一款专业的代码展示工具，能够将源代码转换成精美的图片，让代码分享更加优雅直观。</p>
             <p>支持多种编程语言，内置多种主题，提供暗色模式切换、背景开关、边距调整等功能。</p>
-            <p>点击右上角的导出按钮，可以将代码导出为 PNG 格式的截图。</p>
-            <p>点击导出按钮右侧的图标，打开导出菜单，可以选择导出截图的格式和质量。</p>
+            <p>点击右上角的【复制图片】按钮，可以将截图复制到剪贴板, 粘贴到任何支持图片的应用中。</p>
+            <p>点击【复制图片】按钮右侧的图标，打开导出菜单，可以选择导出 PNG 或 SVG 格式的截图和调整导出质量。</p>
             <p className="text-gray-12 mt-auto">
               本工具基于效率工具{" "}
               <a className="text-brand" href="https://www.raycast.com/" target="_blank">

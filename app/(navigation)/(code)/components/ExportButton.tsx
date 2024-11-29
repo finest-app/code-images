@@ -82,7 +82,7 @@ const ExportButton: React.FC = () => {
 
     await navigator.clipboard.write([clipboardItem]);
 
-    setFlashMessage({ icon: <ClipboardIcon />, message: "PNG 已复制到剪贴板！", timeout: 2000 });
+    setFlashMessage({ icon: <ClipboardIcon />, message: "PNG 已复制到剪贴板！", timeout: 1000 });
   };
 
   const saveSvg = async () => {
@@ -106,29 +106,35 @@ const ExportButton: React.FC = () => {
     };
   };
 
-  const handleExportClick: MouseEventHandler = (event) => {
+  // const handleExportClick: MouseEventHandler = (event) => {
+  //   event.preventDefault();
+
+  //   savePng();
+  // };
+
+  const handleCopyClick: MouseEventHandler = (event) => {
     event.preventDefault();
 
-    savePng();
+    copyPng();
   };
 
-  const copyUrl = async () => {
-    setFlashMessage({ icon: <ClipboardIcon />, message: "正在复制链接" });
+  // const copyUrl = async () => {
+  //   setFlashMessage({ icon: <ClipboardIcon />, message: "正在复制链接" });
 
-    const url = window.location.toString();
-    let urlToCopy = url;
+  //   const url = window.location.toString();
+  //   let urlToCopy = url;
 
-    const encodedUrl = encodeURIComponent(url);
-    const response = await fetch(`/api/shorten-url?url=${encodedUrl}&ref=codeImage`).then((res) => res.json());
+  //   const encodedUrl = encodeURIComponent(url);
+  //   const response = await fetch(`/api/shorten-url?url=${encodedUrl}&ref=codeImage`).then((res) => res.json());
 
-    if (response.link) {
-      urlToCopy = response.link;
-    }
+  //   if (response.link) {
+  //     urlToCopy = response.link;
+  //   }
 
-    navigator.clipboard.writeText(urlToCopy);
+  //   navigator.clipboard.writeText(urlToCopy);
 
-    setFlashMessage({ icon: <ClipboardIcon />, message: "链接已复制到剪贴板！", timeout: 2000 });
-  };
+  //   setFlashMessage({ icon: <ClipboardIcon />, message: "链接已复制到剪贴板！", timeout: 2000 });
+  // };
 
   useHotkeys("ctrl+k,cmd+k", (event) => {
     event.preventDefault();
@@ -156,10 +162,10 @@ const ExportButton: React.FC = () => {
 
   return (
     <ButtonGroup>
-      <Button onClick={handleExportClick} variant="primary" aria-label="Export as PNG">
-        <DownloadIcon className="w-4 h-4" />
+      <Button onClick={handleCopyClick} variant="primary" aria-label="Copy as PNG">
+        <ClipboardIcon className="size-4" />
         <span>
-          导出<span className="hidden md:inline-block">图片</span>
+          复制<span className="hidden md:inline-block">图片</span>
         </span>
       </Button>
       <DropdownMenu open={dropdownOpen} onOpenChange={(open) => setDropdownOpen(open)}>
