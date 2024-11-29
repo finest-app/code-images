@@ -404,3 +404,7 @@ body::-webkit-scrollbar {
   width: 0;
   height: 0;
 }
+
+.os-scrollbar {
+  --os-size: 12px !important;
+}
