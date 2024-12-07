@@ -1,9 +1,12 @@
+const path = require("node:path");
+const CopyPlugin = require("copy-webpack-plugin");
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   output: "export",
-  transpilePackages: ["geist", "highlight.js"],
+  transpilePackages: ["geist"],
   experimental: {
     optimizePackageImports: ["shiki"],
   },
@@ -58,6 +61,29 @@ const nextConfig = {
         },
       ],
     });
+
+    // Add the necessary fallbacks for the language detection model
+    config.resolve.fallback = {
+      ...config.resolve.fallback,
+      fs: false,
+      encoding: false,
+    };
+
+    // Copy the language detection model to the public folder
+    config.plugins.push(
+      new CopyPlugin({
+        patterns: [
+          {
+            from: "node_modules/@vscode/vscode-languagedetection/model/group1-shard1of1.bin",
+            to: path.join(__dirname, "public/"),
+          },
+          {
+            from: "node_modules/@vscode/vscode-languagedetection/model/model.json",
+            to: path.join(__dirname, "public/"),
+          },
+        ],
+      }),
+    );
 
     return config;
   },

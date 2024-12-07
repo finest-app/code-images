@@ -1,6 +1,6 @@
 import { atom } from "jotai";
 import { Base64 } from "js-base64";
-import hljs from "highlight.js";
+import { ModelOperations } from "@vscode/vscode-languagedetection";
 import { atomWithHash } from "jotai-location";
 import { LANGUAGES, Language } from "../util/languages";
 
@@ -49,16 +49,23 @@ export default function Command() {
   },
 ];
 
-const detectLanguage: (input: string) => Promise<string> = async (input) => {
-  return new Promise((resolve) => {
-    const highlightResult = hljs.highlightAuto(input, Object.keys(LANGUAGES));
+const modulOperations = new ModelOperations({
+  modelJsonLoaderFunc: () => fetch("./model.json").then((response) => response.json()),
+  weightsLoaderFunc: () => fetch("./group1-shard1of1.bin").then((response) => response.arrayBuffer()),
+});
 
-    if (highlightResult.language) {
-      resolve(highlightResult.language);
-    } else {
-      resolve(LANGUAGES.plaintext.name.toLowerCase());
+const detectLanguage: (input: string) => Promise<string> = async (input) => {
+  const modelResults = await modulOperations.runModel(input);
+
+  for (const modelResult of modelResults) {
+    for (const language in LANGUAGES) {
+      if (LANGUAGES[language].languageId === modelResult.languageId) {
+        return language;
+      }
     }
-  });
+  }
+
+  return LANGUAGES.plaintext.name.toLowerCase();
 };
 
 export const autoDetectLanguageAtom = atom<boolean>((get) => {

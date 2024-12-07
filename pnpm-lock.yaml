@@ -31,6 +31,9 @@ importers:
       "@raycast/icons":
         specifier: ^0.4.5
         version: 0.4.5
+      "@vscode/vscode-languagedetection":
+        specifier: ^1.0.22
+        version: 1.0.22
       chroma-js:
         specifier: ^3.1.2
         version: 3.1.2
@@ -49,9 +52,6 @@ importers:
       geist:
         specifier: ^1.3.0
         version: 1.3.1(next@14.2.3(@babel/core@7.26.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
-      highlight.js:
-        specifier: ^11.7.0
-        version: 11.10.0
       hotkeys-js:
         specifier: ^3.10.0
         version: 3.13.7
@@ -125,6 +125,9 @@ importers:
       autoprefixer:
         specifier: ^10.4.19
         version: 10.4.20(postcss@8.4.49)
+      copy-webpack-plugin:
+        specifier: ^12.0.2
+        version: 12.0.2(webpack@5.96.1)
       eslint:
         specifier: ^8.32.0
         version: 8.57.1
@@ -1761,6 +1764,11 @@ packages:
     resolution:
       { integrity: sha512-jn7/7ky30idSkd/O5yDBfAnVt+JJpepofP/POZ1iMOxK59cOfqIgg/Dj0eFsjOTMw+4ycJN0uhZH/Eb0bs/EUA== }
 
+  "@sindresorhus/merge-streams@2.3.0":
+    resolution:
+      { integrity: sha512-LtoMMhxAlorcGhmFYI+LhPgbPZCkgP6ra1YL604EeF6U98pLlQ3iWIGMdWSC+vWmPBWBNgmDBAhnAobLROJmwg== }
+    engines: { node: ">=18" }
+
   "@svgr/babel-plugin-add-jsx-attribute@6.5.1":
     resolution:
       { integrity: sha512-9PYGcXrAxitycIjRmZB+Q0JaN07GZIWaTBIGQzfaZv+qr1n8X1XUEJ5rZ/vx6OVD9RRYlrNnXWExQXcmZeD/BQ== }
@@ -2032,6 +2040,11 @@ packages:
   "@ungap/structured-clone@1.2.0":
     resolution:
       { integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ== }
+
+  "@vscode/vscode-languagedetection@1.0.22":
+    resolution:
+      { integrity: sha512-rQ/BgMyLuIXSmbA0MSkIPHtcOw14QkeDbAq19sjvaS9LTRr905yij0S8lsyqN5JgOsbtIx7pAcyOxFMzPmqhZQ== }
+    hasBin: true
 
   "@webassemblyjs/ast@1.14.1":
     resolution:
@@ -2501,6 +2514,13 @@ packages:
   copy-to-clipboard@3.3.3:
     resolution:
       { integrity: sha512-2KV8NhB5JqC3ky0r9PMCAZKbUHSwtEo4CwCs0KXgruG43gX5PMqDEBbVU4OUzw2MuAWUfsuFmWvEKG5QRfSnJA== }
+
+  copy-webpack-plugin@12.0.2:
+    resolution:
+      { integrity: sha512-SNwdBeHyII+rWvee/bTnAYyO8vfVdcSTud4EIb6jcZ8inLeWucJE0DnxXQBjlQ5zlteuuvooGQy3LIyGxhvlOA== }
+    engines: { node: ">= 18.12.0" }
+    peerDependencies:
+      webpack: ^5.1.0
 
   core-js-compat@3.39.0:
     resolution:
@@ -3128,6 +3148,11 @@ packages:
       { integrity: sha512-jhIXaOzy1sb8IyocaruWSn1TjmnBVs8Ayhcy83rmxNJ8q2uWKCAj3CnJY+KpGSXCueAPc0i05kVvVKtP1t9S3g== }
     engines: { node: ">=10" }
 
+  globby@14.0.2:
+    resolution:
+      { integrity: sha512-s3Fq41ZVh7vbbe2PN3nrW7yC7U7MFVc5c98/iTl9c2GawNMKx/J648KQRW6WKkuU8GIbbh2IXfIRQjOZnXcTnw== }
+    engines: { node: ">=18" }
+
   globjoin@0.1.4:
     resolution:
       { integrity: sha512-xYfnw62CKG8nLkZBfWbhWwDw02CHty86jfPcc2cr3ZfeuK9ysoVPPEUxf21bAD/rWAgk52SuBrLJlefNy8mvFg== }
@@ -3189,11 +3214,6 @@ packages:
   hast-util-whitespace@3.0.0:
     resolution:
       { integrity: sha512-88JUN06ipLwsnv+dVn+OIYOvAuvBMy/Qoi6O7mQHxdPXpjy+Cd6xRkWwux7DKO+4sYILtLBRIKgsdpS2gQc7qw== }
-
-  highlight.js@11.10.0:
-    resolution:
-      { integrity: sha512-SYVnVFswQER+zu1laSya563s+F8VDGt7o35d4utbamowvUNLLMovFqwCLSocpZTz3MgaSRA1IbqRWZv97dtErQ== }
-    engines: { node: ">=12.0.0" }
 
   hosted-git-info@2.8.9:
     resolution:
@@ -4003,6 +4023,11 @@ packages:
       { integrity: sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw== }
     engines: { node: ">=8" }
 
+  path-type@5.0.0:
+    resolution:
+      { integrity: sha512-5HviZNaZcfqP95rwpv+1HDgUamezbqdSYTyzjTvwtJSnIH+3vnbmWsItli8OFEndS984VT55M3jduxZbX351gg== }
+    engines: { node: ">=12" }
+
   picocolors@1.1.1:
     resolution:
       { integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA== }
@@ -4442,6 +4467,11 @@ packages:
       { integrity: sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q== }
     engines: { node: ">=8" }
 
+  slash@5.1.0:
+    resolution:
+      { integrity: sha512-ZA6oR3T/pEyuqwMgAKT0/hAv8oAXckzbkmR0UkUosQ+Mc4RxGoJkRmwHgHufaenlyAgE1Mxgpdcrf75y6XcnDg== }
+    engines: { node: ">=14.16" }
+
   slice-ansi@4.0.0:
     resolution:
       { integrity: sha512-qMCMfhY040cVHT43K9BFygqYbUPFZKHOg7K73mtTWJRb8pyP3fzf4Ixd5SzdEJQ6MRUg/WBnOLxghZtKKurENQ== }
@@ -4841,6 +4871,11 @@ packages:
     resolution:
       { integrity: sha512-6t3foTQI9qne+OZoVQB/8x8rk2k1eVy1gRXhV3oFQ5T6R1dqQ1xtin3XqSlx3+ATBkliTaR/hHyJBm+LVPNM8w== }
     engines: { node: ">=4" }
+
+  unicorn-magic@0.1.0:
+    resolution:
+      { integrity: sha512-lRfVq8fE8gz6QMBuDM6a+LO3IAzTi05H6gCVaUpir2E1Rwpo4ZUog45KpNXKC/Mn3Yb9UDuHumeFTo9iV/D9FQ== }
+    engines: { node: ">=18" }
 
   unist-util-is@6.0.0:
     resolution:
@@ -6584,6 +6619,8 @@ snapshots:
 
   "@shikijs/vscode-textmate@9.3.0": {}
 
+  "@sindresorhus/merge-streams@2.3.0": {}
+
   "@svgr/babel-plugin-add-jsx-attribute@6.5.1(@babel/core@7.26.0)":
     dependencies:
       "@babel/core": 7.26.0
@@ -6845,6 +6882,8 @@ snapshots:
       eslint-visitor-keys: 4.2.0
 
   "@ungap/structured-clone@1.2.0": {}
+
+  "@vscode/vscode-languagedetection@1.0.22": {}
 
   "@webassemblyjs/ast@1.14.1":
     dependencies:
@@ -7248,6 +7287,16 @@ snapshots:
   copy-to-clipboard@3.3.3:
     dependencies:
       toggle-selection: 1.0.6
+
+  copy-webpack-plugin@12.0.2(webpack@5.96.1):
+    dependencies:
+      fast-glob: 3.3.2
+      glob-parent: 6.0.2
+      globby: 14.0.2
+      normalize-path: 3.0.0
+      schema-utils: 4.2.0
+      serialize-javascript: 6.0.2
+      webpack: 5.96.1
 
   core-js-compat@3.39.0:
     dependencies:
@@ -7914,6 +7963,15 @@ snapshots:
       merge2: 1.4.1
       slash: 3.0.0
 
+  globby@14.0.2:
+    dependencies:
+      "@sindresorhus/merge-streams": 2.3.0
+      fast-glob: 3.3.2
+      ignore: 5.3.2
+      path-type: 5.0.0
+      slash: 5.1.0
+      unicorn-magic: 0.1.0
+
   globjoin@0.1.4: {}
 
   gopd@1.0.1:
@@ -7963,8 +8021,6 @@ snapshots:
   hast-util-whitespace@3.0.0:
     dependencies:
       "@types/hast": 3.0.4
-
-  highlight.js@11.10.0: {}
 
   hosted-git-info@2.8.9: {}
 
@@ -8584,6 +8640,8 @@ snapshots:
 
   path-type@4.0.0: {}
 
+  path-type@5.0.0: {}
+
   picocolors@1.1.1: {}
 
   picomatch@2.3.1: {}
@@ -8943,6 +9001,8 @@ snapshots:
   signal-exit@4.1.0: {}
 
   slash@3.0.0: {}
+
+  slash@5.1.0: {}
 
   slice-ansi@4.0.0:
     dependencies:
@@ -9341,6 +9401,8 @@ snapshots:
   unicode-match-property-value-ecmascript@2.2.0: {}
 
   unicode-property-aliases-ecmascript@2.1.0: {}
+
+  unicorn-magic@0.1.0: {}
 
   unist-util-is@6.0.0:
     dependencies:
