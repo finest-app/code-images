@@ -1,5 +1,5 @@
 import { Button } from "@/components/button";
-import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "@/components/dialog";
+import { Dialog, DialogContent, DialogTitle, DialogTrigger, DialogDescription } from "@/components/dialog";
 import { Info02Icon } from "@raycast/icons";
 import { Shortcut } from "@/components/kbd";
 import usePngClipboardSupported from "../util/usePngClipboardSupported";
@@ -22,6 +22,7 @@ export function InfoDialog() {
           关于
         </Button>
       </DialogTrigger>
+      <DialogDescription />
       <DialogContent size="large">
         <div className="flex gap-8">
           <div className="flex flex-col gap-3 flex-1 text-[13px] text-gray-11 leading-relaxed">
