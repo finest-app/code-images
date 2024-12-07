@@ -279,6 +279,9 @@ const DefaultFrame = () => {
           [styles.withBorder]: !isSafari,
           [styles.withShadow]: !isSafari && showBackground,
         })}
+        style={{
+          borderRadius: padding === 0 ? 0 : undefined,
+        }}
       >
         <div className={styles.header}>
           <div className={styles.controls}>
