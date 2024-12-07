@@ -32,7 +32,7 @@ importers:
         specifier: ^0.4.5
         version: 0.4.5
       "@vscode/vscode-languagedetection":
-        specifier: ^1.0.22
+        specifier: 1.0.22
         version: 1.0.22
       chroma-js:
         specifier: ^3.1.2

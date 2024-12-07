@@ -70,20 +70,22 @@ const nextConfig = {
     };
 
     // Copy the language detection model to the public folder
-    config.plugins.push(
-      new CopyPlugin({
-        patterns: [
-          {
-            from: "node_modules/@vscode/vscode-languagedetection/model/group1-shard1of1.bin",
-            to: path.join(__dirname, "public/"),
-          },
-          {
-            from: "node_modules/@vscode/vscode-languagedetection/model/model.json",
-            to: path.join(__dirname, "public/"),
-          },
-        ],
-      }),
-    );
+    if (false) {
+      config.plugins.push(
+        new CopyPlugin({
+          patterns: [
+            {
+              from: "node_modules/@vscode/vscode-languagedetection/model/group1-shard1of1.bin",
+              to: path.join(__dirname, "public/"),
+            },
+            {
+              from: "node_modules/@vscode/vscode-languagedetection/model/model.json",
+              to: path.join(__dirname, "public/"),
+            },
+          ],
+        }),
+      );
+    }
 
     return config;
   },
