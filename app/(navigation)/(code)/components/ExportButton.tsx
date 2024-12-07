@@ -103,7 +103,7 @@ const ExportButton: React.FC = () => {
       throw new Error("Couldn't find a frame to export");
     }
 
-    setFlashMessage({ icon: <ImageIcon />, message: "正在导出 SVG" });
+    setFlashMessage({ icon: <ImageSVGIcon />, message: "正在导出 SVG" });
 
     const dataUrl = await toSvg(frameContext.current);
     download(dataUrl, `${fileName}.svg`);
