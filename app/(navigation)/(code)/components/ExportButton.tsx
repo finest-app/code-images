@@ -9,6 +9,7 @@ import ArrowsExpandingIcon from "../assets/icons/arrows-expanding-16.svg";
 import { FrameContext } from "../store/FrameContextStore";
 import { derivedFlashMessageAtom, flashShownAtom } from "../store/flash";
 import { fileNameAtom } from "../store";
+import downloadBlob from "../util/downloadBlob";
 import download from "../util/download";
 import { toPng, toSvg, toBlob } from "../lib/image";
 
@@ -54,11 +55,15 @@ const ExportButton: React.FC = () => {
 
     setFlashMessage({ icon: <ImageIcon />, message: "正在导出 PNG" });
 
-    const dataUrl = await toPng(frameContext.current, {
+    const blob = await toBlob(frameContext.current, {
       pixelRatio: exportSize,
     });
 
-    download(dataUrl, `${fileName}.png`);
+    if (blob === null) {
+      throw new Error("expected toBlob to return a blob");
+    }
+
+    downloadBlob(blob, `${fileName}.png`);
 
     setFlashShown(false);
   };
