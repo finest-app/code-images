@@ -1,7 +1,8 @@
-import { atom } from "jotai";
+import { type Setter, atom } from "jotai";
 import { Base64 } from "js-base64";
 import { ModelOperations } from "@vscode/vscode-languagedetection";
 import { atomWithHash } from "jotai-location";
+import debounce from "debounce";
 import { LANGUAGES, Language } from "../util/languages";
 
 type CodeSample = {
@@ -145,6 +146,14 @@ function getInitialUserInputtedCode() {
 
 export const userInputtedCodeAtom = atom<string | null>(getInitialUserInputtedCode());
 
+const updateDetectLanguage = debounce((input: string, set: Setter) => {
+  detectLanguage(input).then((language) => {
+    if (LANGUAGES[language]) {
+      set(detectedLanguageAtom, LANGUAGES[language]);
+    }
+  });
+}, 300);
+
 export const codeAtom = atom(
   (get) => get(userInputtedCodeAtom) ?? get(codeExampleAtom)?.code ?? "",
   (get, set, newCode: string) => {
@@ -154,11 +163,9 @@ export const codeAtom = atom(
     // searchParams.set("code", Base64.encodeURI(newCode));
     // window.location.hash = `#${searchParams.toString()}`;
 
-    detectLanguage(newCode).then((language) => {
-      if (LANGUAGES[language]) {
-        set(detectedLanguageAtom, LANGUAGES[language]);
-      }
-    });
+    if (get(autoDetectLanguageAtom)) {
+      updateDetectLanguage(newCode, set);
+    }
   },
 );
 
