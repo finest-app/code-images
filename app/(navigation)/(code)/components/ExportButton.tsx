@@ -1,6 +1,7 @@
 import React, { MouseEventHandler, useContext, useState } from "react";
 
 import ImageIcon from "../assets/icons/image-16.svg";
+import ImageSVGIcon from "../assets/icons/image-svg-16.svg";
 import LinkIcon from "../assets/icons/link-16.svg";
 import ChevronDownIcon from "../assets/icons/chevron-down-16.svg";
 import ClipboardIcon from "../assets/icons/clipboard-16.svg";
@@ -203,7 +204,7 @@ const ExportButton: React.FC = () => {
               </Kbds>
             </DropdownMenuItem>
             <DropdownMenuItem onSelect={dropdownHandler(saveSvg)}>
-              <ImageIcon />
+              <ImageSVGIcon />
               导出 SVG
               <Kbds>
                 <Kbd>⌘</Kbd>
