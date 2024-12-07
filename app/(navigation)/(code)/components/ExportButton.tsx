@@ -74,18 +74,25 @@ const ExportButton: React.FC = () => {
       throw new Error("Couldn't find a frame to export");
     }
 
-    const clipboardItem = new ClipboardItem({
-      "image/png": toBlob(frameContext.current, {
-        pixelRatio: exportSize,
-      }).then((blob) => {
-        if (!blob) {
-          throw new Error("expected toBlob to return a blob");
-        }
-        return blob;
-      }),
+    const blob = await toBlob(frameContext.current, {
+      pixelRatio: exportSize,
     });
 
-    await navigator.clipboard.write([clipboardItem]);
+    if (!blob) {
+      throw new Error("expected toBlob to return a blob");
+    }
+
+    if (window.utools) {
+      const uint8Array = new Uint8Array(await blob.arrayBuffer());
+
+      window.utools.copyImage(uint8Array);
+    } else {
+      const clipboardItem = new ClipboardItem({
+        "image/png": blob,
+      });
+
+      await navigator.clipboard.write([clipboardItem]);
+    }
 
     setFlashMessage({ icon: <ClipboardIcon />, message: "PNG 已复制到剪贴板！", timeout: 1000 });
   };
