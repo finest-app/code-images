@@ -45,7 +45,7 @@ const LanguageControl: React.FC = () => {
           icon={ChevronUpIcon}
         >
           <SelectValue />
-          {autoDetectLanguage ? "(自动检测)" : ""}
+          {autoDetectLanguage && selectedLanguage ? "(自动检测)" : ""}
         </SelectTrigger>
         <SelectContent>
           <SelectItem value="auto-detect">
