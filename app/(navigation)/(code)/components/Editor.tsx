@@ -140,22 +140,22 @@ function Editor() {
   const handleKeyDown = useCallback<KeyboardEventHandler<HTMLDivElement>>((event) => {
     const textarea = contentRef.current!;
     switch (event.key) {
-      case "Tab":
-        event.preventDefault();
-        handleTab(textarea, event.shiftKey);
-        break;
-      case "}":
-        event?.preventDefault();
-        handleBracketClose(textarea);
-        break;
+      // case "Tab":
+      //   event.preventDefault();
+      //   handleTab(textarea, event.shiftKey);
+      //   break;
+      // case "}":
+      //   event?.preventDefault();
+      //   handleBracketClose(textarea);
+      //   break;
       case "Escape":
         event.preventDefault();
         textarea.blur();
         break;
-      case "Enter":
-        event.preventDefault();
-        handleEnter(textarea);
-        break;
+      // case "Enter":
+      //   event.preventDefault();
+      //   handleEnter(textarea);
+      //   break;
     }
   }, []);
 
