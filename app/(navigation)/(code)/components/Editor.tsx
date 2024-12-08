@@ -9,7 +9,7 @@ import React, {
 } from "react";
 import styles from "./Editor.module.css";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
-import { codeAtom, isCodeExampleAtom, selectedLanguageAtom } from "../store/code";
+import { codeAtom, formatedCountAtom, isCodeExampleAtom, selectedLanguageAtom } from "../store/code";
 import {
   THEMES,
   themeAtom,
@@ -32,6 +32,7 @@ function Editor() {
   const [themeCSS] = useAtom(themeCSSAtom);
   const [isCodeExample] = useAtom(isCodeExampleAtom);
   const [themeFont] = useAtom(themeFontAtom);
+  const formatedCount = useAtomValue(formatedCountAtom);
   const [theme, setTheme] = useAtom(themeAtom);
   const [unlockedThemes, setUnlockedThemes] = useAtom(unlockedThemesAtom);
   const setFlashMessage = useSetAtom(derivedFlashMessageAtom);
@@ -144,8 +145,6 @@ function Editor() {
     };
   }, []);
 
-  const lines = code.split("\n");
-
   return (
     <div
       className={classNames(
@@ -168,15 +167,9 @@ function Editor() {
       )}
       style={{ "--editor-padding": "16px 16px 21px 16px", ...themeCSS } as React.CSSProperties}
     >
-      {showLineNumbers && (
-        <div className={classNames(styles.lineNumbers)}>
-          {lines.map((_, index) => (
-            <div key={index}>{index + 1}</div>
-          ))}
-        </div>
-      )}
       <HighlightedCode
         ref={contentRef}
+        key={formatedCount}
         selectedLanguage={selectedLanguage}
         onKeyDown={handleKeyDown}
         onFocus={handleFocus}

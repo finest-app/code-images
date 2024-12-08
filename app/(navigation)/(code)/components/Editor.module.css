@@ -10,6 +10,23 @@
       width 0.2s,
       padding 0.2s,
       margin 0.2s;
+    word-break: break-word;
+
+    &:before {
+      position: relative;
+      left: 6px;
+      display: inline-block;
+      width: 1rem;
+      margin-right: 1.5rem;
+      margin-left: -2.5rem;
+      color: var(--line-number);
+      content: counter(step);
+      counter-increment: step;
+      opacity: 0;
+      text-align: right;
+      transition: opacity 0.2s;
+      word-break: keep-all;
+    }
   }
 
   :global(.highlighted-line) {

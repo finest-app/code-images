@@ -113,6 +113,8 @@ export const selectedLanguageAtom = atom(
 
 export const codeExampleAtom = atom<CodeSample | null>(CODE_SAMPLES[Math.floor(Math.random() * CODE_SAMPLES.length)]);
 
+export const formatedCountAtom = atom<number>(0);
+
 export const isCodeExampleAtom = atom<boolean>(
   (get) => !!CODE_SAMPLES.find((codeSample) => codeSample.code === get(codeAtom)),
 );

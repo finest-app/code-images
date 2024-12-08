@@ -2,8 +2,8 @@
 
 import { WandIcon } from "@raycast/icons";
 import formatCode, { formatterSupportedLanguages } from "../util/formatCode";
-import { useAtom } from "jotai";
-import { codeAtom, selectedLanguageAtom } from "../store/code";
+import { useAtom, useSetAtom } from "jotai";
+import { codeAtom, formatedCountAtom, selectedLanguageAtom } from "../store/code";
 import useHotkeys from "@/utils/useHotkeys";
 import { Button } from "@/components/button";
 import { toast } from "@/components/toast";
@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 
 const FormatButton: React.FC = () => {
   const [selectedLanguage, setSelectedLanguage] = useAtom(selectedLanguageAtom);
+  const setFormatedCount = useSetAtom(formatedCountAtom);
   const [code, setCode] = useAtom(codeAtom);
   const [isClient, setIsClient] = useState(false);
 
@@ -34,6 +35,8 @@ const FormatButton: React.FC = () => {
         // Sometimes hljs thinks the formatted code is a different language
         // than the original, so we enforce the original language here
         setSelectedLanguage(language);
+
+        setFormatedCount((count) => count + 1);
       }),
       {
         loading: "正在格式化代码...",

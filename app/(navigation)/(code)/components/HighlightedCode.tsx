@@ -25,6 +25,7 @@ const HighlightedCode = forwardRef<HTMLDivElement, PropTypes>(
     const setIsLoadingLanguage = useSetAtom(loadingLanguageAtom);
     const highlightedLines = useAtomValue(highlightedLinesAtom);
     const darkMode = useAtomValue(darkModeAtom);
+    const code = useAtomValue(codeAtom);
     const theme = useAtomValue(themeAtom);
     const themeName = theme.id === "tailwind" ? (darkMode ? "tailwind-dark" : "tailwind-light") : "css-variables";
 
@@ -97,14 +98,23 @@ const HighlightedCode = forwardRef<HTMLDivElement, PropTypes>(
     }, [selectedLanguage, highlighter, setIsLoadingLanguage, highlightedLines, theme, themeName]);
 
     return (
-      <div
-        ref={mergeRefs([content, contentRef])}
-        contentEditable="plaintext-only"
-        className={classNames(styles.formatted, selectedLanguage === LANGUAGES.plaintext && styles.plainText)}
-        onKeyDown={onKeyDown}
-        onFocus={onFocus}
-        onInput={onInput}
-      />
+      <>
+        <div className={classNames("absolute -z-10", styles.formatted)}>
+          {code.split("\n").map((line, index) => (
+            <div key={index} className="line">
+              {line}
+            </div>
+          ))}
+        </div>
+        <div
+          ref={mergeRefs([content, contentRef])}
+          contentEditable="plaintext-only"
+          className={classNames(styles.formatted, selectedLanguage === LANGUAGES.plaintext && styles.plainText)}
+          onKeyDown={onKeyDown}
+          onFocus={onFocus}
+          onInput={onInput}
+        />
+      </>
     );
   },
 );
