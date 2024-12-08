@@ -93,19 +93,6 @@ function handleTab(textarea: HTMLDivElement, shiftKey: boolean) {
   }
 }
 
-function handleEnter(textarea: HTMLDivElement) {
-  const currentLine = getCurrentlySelectedLine(textarea);
-
-  const currentIndentationMatch = currentLine.match(/^(\s+)/);
-  let wantedIndentation = currentIndentationMatch ? currentIndentationMatch[0] : "";
-
-  if (currentLine.match(/([{\[:>])$/)) {
-    wantedIndentation += "  ";
-  }
-
-  document.execCommand("insertText", false, `\n${wantedIndentation}`);
-}
-
 function handleBracketClose(textarea: HTMLDivElement) {
   const currentLine = getCurrentlySelectedLine(textarea);
   const { selectionStart, selectionEnd } = textarea;
@@ -152,10 +139,11 @@ function Editor() {
         event.preventDefault();
         textarea.blur();
         break;
-      // case "Enter":
-      //   event.preventDefault();
-      //   handleEnter(textarea);
-      //   break;
+      case "Enter":
+        event.preventDefault();
+        document.execCommand("insertLineBreak");
+
+        break;
     }
   }, []);
 
@@ -263,7 +251,6 @@ function Editor() {
     >
       <HighlightedCode
         ref={contentRef}
-        code={code}
         selectedLanguage={selectedLanguage}
         onKeyDown={handleKeyDown}
         onFocus={handleFocus}
