@@ -10,20 +10,6 @@
       width 0.2s,
       padding 0.2s,
       margin 0.2s;
-
-    &:before {
-      position: relative;
-      left: 6px;
-      display: inline-block;
-      width: 1rem;
-      margin-right: 1.5rem;
-      margin-left: -2.5rem;
-      color: var(--line-number);
-      content: attr(data-line);
-      opacity: 0;
-      text-align: right;
-      transition: opacity 0.2s;
-    }
   }
 
   :global(.highlighted-line) {
@@ -51,6 +37,22 @@
 
 .formatted:focus {
   outline: none;
+}
+
+.lineNumbers {
+  position: absolute;
+  width: var(--line-number-padding);
+  padding: var(--editor-padding);
+  padding-right: 0;
+  padding-left: 0;
+  color: var(--line-number);
+  font-family: inherit;
+  font-size: 15px;
+  font-variant-ligatures: none;
+  font-weight: inherit;
+  letter-spacing: 0.1px;
+  line-height: 22.5px;
+  text-align: center;
 }
 
 .formatted,

@@ -144,6 +144,8 @@ function Editor() {
     };
   }, []);
 
+  const lines = code.split("\n");
+
   return (
     <div
       className={classNames(
@@ -166,6 +168,13 @@ function Editor() {
       )}
       style={{ "--editor-padding": "16px 16px 21px 16px", ...themeCSS } as React.CSSProperties}
     >
+      {showLineNumbers && (
+        <div className={classNames(styles.lineNumbers)}>
+          {lines.map((_, index) => (
+            <div key={index}>{index + 1}</div>
+          ))}
+        </div>
+      )}
       <HighlightedCode
         ref={contentRef}
         selectedLanguage={selectedLanguage}
