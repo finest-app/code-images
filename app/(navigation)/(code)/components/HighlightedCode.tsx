@@ -91,7 +91,7 @@ const HighlightedCode = forwardRef<HTMLDivElement, PropTypes>(
       return () => {
         dispose && dispose();
       };
-    }, [code, selectedLanguage, highlighter, setIsLoadingLanguage, highlightedLines, themeName]);
+    }, [code, selectedLanguage, highlighter, setIsLoadingLanguage, highlightedLines, theme, themeName]);
 
     return (
       <div
