@@ -1,73 +1,111 @@
+import React, { FocusEventHandler, FormEventHandler, forwardRef, KeyboardEventHandler, useEffect, useRef } from "react";
 import classNames from "classnames";
-import React, { useEffect, useState } from "react";
+import { useAtomValue, useSetAtom } from "jotai";
+import { createPlainShiki } from "plain-shiki";
+import { BundledTheme, type BundledLanguage } from "shiki";
+import { mergeRefs } from "react-merge-refs";
+
+import { highlightedLinesAtom, highlighterAtom, loadingLanguageAtom } from "../store";
+import { darkModeAtom, themeAtom } from "../store/themes";
 import { Language, LANGUAGES } from "../util/languages";
 
 import styles from "./Editor.module.css";
-import { highlightedLinesAtom, highlighterAtom, loadingLanguageAtom } from "../store";
-import { useAtom, useAtomValue, useSetAtom } from "jotai";
-import { darkModeAtom, themeAtom } from "../store/themes";
 
 type PropTypes = {
   selectedLanguage: Language | null;
   code: string;
+  onKeyDown: KeyboardEventHandler<HTMLDivElement>;
+  onFocus: FocusEventHandler;
+  onInput: FormEventHandler<HTMLDivElement>;
 };
 
-const HighlightedCode: React.FC<PropTypes> = ({ selectedLanguage, code }) => {
-  const [highlightedHtml, setHighlightedHtml] = useState("");
-  const highlighter = useAtomValue(highlighterAtom);
-  const setIsLoadingLanguage = useSetAtom(loadingLanguageAtom);
-  const highlightedLines = useAtomValue(highlightedLinesAtom);
-  const darkMode = useAtomValue(darkModeAtom);
-  const theme = useAtomValue(themeAtom);
-  const themeName = theme.id === "tailwind" ? (darkMode ? "tailwind-dark" : "tailwind-light") : "css-variables";
+const HighlightedCode = forwardRef<HTMLDivElement, PropTypes>(
+  ({ selectedLanguage, code, onKeyDown, onFocus, onInput }, contentRef) => {
+    const highlighter = useAtomValue(highlighterAtom);
+    const setIsLoadingLanguage = useSetAtom(loadingLanguageAtom);
+    const highlightedLines = useAtomValue(highlightedLinesAtom);
+    const darkMode = useAtomValue(darkModeAtom);
+    const theme = useAtomValue(themeAtom);
+    const themeName = theme.id === "tailwind" ? (darkMode ? "tailwind-dark" : "tailwind-light") : "css-variables";
 
-  useEffect(() => {
-    const generateHighlightedHtml = async () => {
-      if (!highlighter || !selectedLanguage || selectedLanguage === LANGUAGES.plaintext) {
-        return code.replace(/[\u00A0-\u9999<>\&]/g, (i) => `&#${i.charCodeAt(0)};`);
+    const content = useRef<HTMLDivElement | null>(null);
+
+    useEffect(() => {
+      if (content.current) {
+        content.current.textContent = code;
       }
+    }, [code]);
 
-      const loadedLanguages = highlighter.getLoadedLanguages() || [];
-      const hasLoadedLanguage = loadedLanguages.includes(selectedLanguage.name.toLowerCase());
+    useEffect(() => {
+      let dispose: Function | null = null;
 
-      if (!hasLoadedLanguage && selectedLanguage.src) {
-        setIsLoadingLanguage(true);
-        await highlighter.loadLanguage(selectedLanguage.src);
-        setIsLoadingLanguage(false);
-      }
+      const generateHighlightedHtml = async () => {
+        if (!highlighter || !selectedLanguage || selectedLanguage === LANGUAGES.plaintext) {
+          return code.replace(/[\u00A0-\u9999<>\&]/g, (i) => `&#${i.charCodeAt(0)};`);
+        }
 
-      let lang = selectedLanguage.name.toLowerCase();
-      if (lang === "typescript") {
-        lang = "tsx";
-      }
+        const loadedLanguages = highlighter.getLoadedLanguages() || [];
+        const hasLoadedLanguage = loadedLanguages.includes(selectedLanguage.name.toLowerCase());
 
-      return highlighter.codeToHtml(code, {
-        lang: lang,
-        theme: themeName,
-        transformers: [
-          {
-            line(node, line) {
-              node.properties["data-line"] = line;
-              if (highlightedLines.includes(line)) this.addClassToHast(node, "highlighted-line");
-            },
+        if (!hasLoadedLanguage && selectedLanguage.src) {
+          setIsLoadingLanguage(true);
+          await highlighter.loadLanguage(selectedLanguage.src);
+          setIsLoadingLanguage(false);
+        }
+
+        let lang = selectedLanguage.name.toLowerCase();
+        if (lang === "typescript") {
+          lang = "tsx";
+        }
+
+        // highlighter.codeToHtml(code, {
+        //   lang: lang,
+        //   theme: themeName,
+        //   transformers: [
+        //     {
+        //       line(node, line) {
+        //         node.properties["data-line"] = line;
+        //         if (highlightedLines.includes(line)) this.addClassToHast(node, "highlighted-line");
+        //       },
+        //     },
+        //   ],
+        // });
+
+        if (content.current === null) {
+          throw new Error("content.current is null");
+        }
+
+        const plainShiki = createPlainShiki(highlighter).mount(content.current, {
+          lang: lang as BundledLanguage,
+          themes: {
+            light: themeName as BundledTheme,
+            dark: themeName as BundledTheme,
           },
-        ],
-      });
-    };
+        });
 
-    generateHighlightedHtml().then((newHtml) => {
-      setHighlightedHtml(newHtml);
-    });
-  }, [code, selectedLanguage, highlighter, setIsLoadingLanguage, setHighlightedHtml, highlightedLines, themeName]);
+        dispose = plainShiki.dispose;
+      };
 
-  return (
-    <div
-      className={classNames(styles.formatted, selectedLanguage === LANGUAGES.plaintext && styles.plainText)}
-      dangerouslySetInnerHTML={{
-        __html: highlightedHtml,
-      }}
-    />
-  );
-};
+      generateHighlightedHtml();
+
+      return () => {
+        dispose && dispose();
+      };
+    }, [code, selectedLanguage, highlighter, setIsLoadingLanguage, highlightedLines, themeName]);
+
+    return (
+      <div
+        ref={mergeRefs([content, contentRef])}
+        contentEditable="plaintext-only"
+        className={classNames(styles.formatted, selectedLanguage === LANGUAGES.plaintext && styles.plainText)}
+        onKeyDown={onKeyDown}
+        onFocus={onFocus}
+        onInput={onInput}
+      />
+    );
+  },
+);
+
+HighlightedCode.displayName = "HighlightedCode";
 
 export default HighlightedCode;

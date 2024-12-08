@@ -1,12 +1,5 @@
 .editor {
-  display: grid;
   width: 100%;
-  grid-template: 1fr / 1fr;
-
-  &:after {
-    content: attr(data-value) " ";
-    visibility: hidden;
-  }
 
   :global(.line) {
     display: inline-block;
@@ -54,12 +47,12 @@
     background-color: var(--ray-highlight-hover);
     cursor: default;
   }
-  .textarea {
-    z-index: -1;
-  }
 }
 
-.textarea,
+.formatted:focus {
+  outline: none;
+}
+
 .formatted,
 .editor:after {
   /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
@@ -81,7 +74,6 @@
 
 .showLineNumbers {
   --line-number-padding: 3rem;
-  .textarea,
   .formatted,
   .editor:after {
     padding-left: var(--line-number-padding);
@@ -100,34 +92,6 @@
   &.showLineNumbersLarge {
     --line-number-padding: 3.5rem;
   }
-}
-
-.textarea {
-  z-index: 2;
-  overflow: hidden;
-  border: none;
-  background: transparent;
-  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
-  caret-color: var(--ray-foreground);
-  resize: none;
-  -webkit-text-fill-color: transparent;
-  text-size-adjust: none;
-
-  &:focus {
-    border: none;
-    outline: none;
-  }
-}
-
-.formatted > pre {
-  margin: 0;
-  background-color: initial !important;
-  font-family: inherit;
-  white-space: pre-wrap;
-}
-
-.formatted > pre > code {
-  font-family: inherit;
 }
 
 .plainText {

@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  plain-shiki:
+    hash: vtwua7sww5b7i7tfdduwfmxhvi
+    path: patches/plain-shiki.patch
+
 importers:
   .:
     dependencies:
@@ -76,6 +81,9 @@ importers:
       overlayscrollbars:
         specifier: ^2.10.1
         version: 2.10.1
+      plain-shiki:
+        specifier: 0.0.12
+        version: 0.0.12(patch_hash=vtwua7sww5b7i7tfdduwfmxhvi)(shiki@1.23.1)
       prettier:
         specifier: ^3.3.3
         version: 3.3.3
@@ -85,6 +93,9 @@ importers:
       react-dom:
         specifier: 18.3.1
         version: 18.3.1(react@18.3.1)
+      react-merge-refs:
+        specifier: ^2.1.1
+        version: 2.1.1
       react-transition-group:
         specifier: ^4.4.5
         version: 4.4.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -4061,6 +4072,12 @@ packages:
       { integrity: sha512-saLsH7WeYYPiD25LDuLRRY/i+6HaPYr6G1OUlN39otzkSTxKnubR9RTxS3/Kk50s1g2JTgFwWQDQyplC5/SHZg== }
     engines: { node: ">= 6" }
 
+  plain-shiki@0.0.12:
+    resolution:
+      { integrity: sha512-jaR0Rhm0wWOn1unMrt0yOTYI83y+ntabQ///GxYyRSYFRsNJZRrT7dpWbtX/QRFL44cznutwCT5EiEXj1KwXVQ== }
+    peerDependencies:
+      shiki: ^1.22.0
+
   possible-typed-array-names@1.0.0:
     resolution:
       { integrity: sha512-d7Uw+eZoloe0EHDIYoe+bQ5WXnGMOpmiZFTuMWCwpjzzkL2nTjcKiAk4hh8TjnGye2TwWOk3UXucZ+3rbmBa8Q== }
@@ -4186,6 +4203,10 @@ packages:
   react-is@16.13.1:
     resolution:
       { integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ== }
+
+  react-merge-refs@2.1.1:
+    resolution:
+      { integrity: sha512-jLQXJ/URln51zskhgppGJ2ub7b2WFKGq3cl3NYKtlHoTG+dN2q7EzWrn3hN3EgPsTMvpR9tpq5ijdp7YwFZkag== }
 
   react-remove-scroll-bar@2.3.6:
     resolution:
@@ -8662,6 +8683,10 @@ snapshots:
 
   pirates@4.0.6: {}
 
+  plain-shiki@0.0.12(patch_hash=vtwua7sww5b7i7tfdduwfmxhvi)(shiki@1.23.1):
+    dependencies:
+      shiki: 1.23.1
+
   possible-typed-array-names@1.0.0: {}
 
   postcss-import@15.1.0(postcss@8.4.49):
@@ -8748,6 +8773,8 @@ snapshots:
       scheduler: 0.23.2
 
   react-is@16.13.1: {}
+
+  react-merge-refs@2.1.1: {}
 
   react-remove-scroll-bar@2.3.6(@types/react@18.3.12)(react@18.3.1):
     dependencies:

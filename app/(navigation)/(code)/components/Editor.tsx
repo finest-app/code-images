@@ -1,9 +1,9 @@
 import React, {
   useCallback,
   KeyboardEventHandler,
-  useRef,
-  ChangeEventHandler,
+  FormEventHandler,
   FocusEventHandler,
+  useRef,
   useState,
   useEffect,
 } from "react";
@@ -48,7 +48,7 @@ function getCurrentlySelectedLine(textarea: HTMLTextAreaElement) {
   return original.slice(beforeStart.lastIndexOf("\n") != -1 ? beforeStart.lastIndexOf("\n") + 1 : 0).split("\n")[0];
 }
 
-function handleTab(textarea: HTMLTextAreaElement, shiftKey: boolean) {
+function handleTab(textarea: HTMLDivElement, shiftKey: boolean) {
   const original = textarea.value;
 
   const start = textarea.selectionStart;
@@ -93,7 +93,7 @@ function handleTab(textarea: HTMLTextAreaElement, shiftKey: boolean) {
   }
 }
 
-function handleEnter(textarea: HTMLTextAreaElement) {
+function handleEnter(textarea: HTMLDivElement) {
   const currentLine = getCurrentlySelectedLine(textarea);
 
   const currentIndentationMatch = currentLine.match(/^(\s+)/);
@@ -106,7 +106,7 @@ function handleEnter(textarea: HTMLTextAreaElement) {
   document.execCommand("insertText", false, `\n${wantedIndentation}`);
 }
 
-function handleBracketClose(textarea: HTMLTextAreaElement) {
+function handleBracketClose(textarea: HTMLDivElement) {
   const currentLine = getCurrentlySelectedLine(textarea);
   const { selectionStart, selectionEnd } = textarea;
 
@@ -118,7 +118,7 @@ function handleBracketClose(textarea: HTMLTextAreaElement) {
 }
 
 function Editor() {
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
   const [code, setCode] = useAtom(codeAtom);
   const [selectedLanguage, setSelectedLanguage] = useAtom(selectedLanguageAtom);
   const [themeCSS] = useAtom(themeCSSAtom);
@@ -134,11 +134,11 @@ function Editor() {
 
   useHotkeys("f", (event) => {
     event.preventDefault();
-    textareaRef.current?.focus();
+    contentRef.current?.focus();
   });
 
-  const handleKeyDown = useCallback<KeyboardEventHandler<HTMLTextAreaElement>>((event) => {
-    const textarea = textareaRef.current!;
+  const handleKeyDown = useCallback<KeyboardEventHandler<HTMLDivElement>>((event) => {
+    const textarea = contentRef.current!;
     switch (event.key) {
       case "Tab":
         event.preventDefault();
@@ -159,9 +159,11 @@ function Editor() {
     }
   }, []);
 
-  const handleChange = useCallback<ChangeEventHandler<HTMLTextAreaElement>>(
+  const handleChange = useCallback<FormEventHandler<HTMLDivElement>>(
     (event) => {
-      if (event.target.value.includes("🐰") && theme.id !== THEMES.rabbit.id) {
+      const code = (event.target as HTMLElement).textContent as string;
+
+      if (code.includes("🐰") && theme.id !== THEMES.rabbit.id) {
         if (!unlockedThemes.includes(THEMES.rabbit.id)) {
           setUnlockedThemes([...unlockedThemes, THEMES.rabbit.id]);
         }
@@ -178,20 +180,19 @@ function Editor() {
           icon: React.createElement(THEMES.rabbit.icon || "", { style: { color: "black" } }),
         });
       }
-      setCode(event.target.value);
+      setCode(code);
     },
     [setCode, setTheme, setFlashMessage, setUnlockedThemes, unlockedThemes, theme.id],
   );
 
-  const handleFocus = useCallback<FocusEventHandler>(() => {
-    if (isCodeExample && textareaRef.current) {
-      // Safari needs a timeout otherwise the selection flickers
-      const textarea = textareaRef.current;
-      setTimeout(() => {
-        textarea.select();
-      }, 1);
-    }
-  }, [isCodeExample]);
+  const handleFocus = useCallback<FocusEventHandler>(
+    (event) => {
+      if (isCodeExample && contentRef.current) {
+        window.getSelection()?.selectAllChildren(event.target);
+      }
+    },
+    [isCodeExample],
+  );
 
   useEffect(() => {
     const listener = (event: MouseEvent) => {
@@ -259,23 +260,15 @@ function Editor() {
           ],
       )}
       style={{ "--editor-padding": "16px 16px 21px 16px", ...themeCSS } as React.CSSProperties}
-      data-value={code}
     >
-      <textarea
-        tabIndex={-1}
-        autoComplete="off"
-        autoCorrect="off"
-        spellCheck="false"
-        autoCapitalize="off"
-        ref={textareaRef}
-        className={styles.textarea}
-        value={code}
-        onChange={handleChange}
+      <HighlightedCode
+        ref={contentRef}
+        code={code}
+        selectedLanguage={selectedLanguage}
         onKeyDown={handleKeyDown}
         onFocus={handleFocus}
-        data-enable-grammarly="false"
+        onInput={handleChange}
       />
-      <HighlightedCode code={code} selectedLanguage={selectedLanguage} />
     </div>
   );
 }

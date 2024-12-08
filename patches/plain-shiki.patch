@@ -1,0 +1,76 @@
+diff --git a/dist/index.cjs b/dist/index.cjs
+index 92eba442660148b5943ee938da748b306a7ddbf1..38607ecf65f237e34afb59ea1f2039424db6bf81 100644
+--- a/dist/index.cjs
++++ b/dist/index.cjs
+@@ -131,13 +131,13 @@ function createPlainShiki(shiki) {
+     const colorRanges = /* @__PURE__ */ new Map();
+     const loadLines = [];
+     function patch(loads, oldLoads) {
+-      for (const { range, name } of walkTokens(oldLoads)) {
++      for (const { range, name } of walkTokens(el, oldLoads)) {
+         const highlight = CSS.highlights.get(name);
+         _optionalChain([highlight, 'optionalAccess', _5 => _5.delete, 'call', _6 => _6(range)]);
+         const ranges = colorRanges.get(name);
+         _optionalChain([ranges, 'optionalAccess', _7 => _7.delete, 'call', _8 => _8(range)]);
+       }
+-      for (const { range, color, theme, name } of walkTokens(loads)) {
++      for (const { range, color, theme, name } of walkTokens(el, loads)) {
+         const isDefault = theme === defaultTheme;
+         let highlight = CSS.highlights.get(name);
+         if (!highlight) {
+@@ -254,13 +254,15 @@ function createPlainShiki(shiki) {
+     mount
+   };
+ }
+-function* walkTokens(loads) {
++function* walkTokens(el, loads) {
+   for (const { token, range } of loads) {
+     if (typeof token.htmlStyle !== "object") {
+       continue;
+     }
+     for (const theme in token.htmlStyle) {
+-      const color = token.htmlStyle[theme];
++      const color = token.htmlStyle[theme].startsWith("var(--")
++        ? window.getComputedStyle(el).getPropertyValue(token.htmlStyle[theme].replace("var(", "").replace(")", ""))
++        : token.htmlStyle[theme];
+       const name = `shiki-${theme}-${color.slice(1).toLowerCase()}`;
+       yield { range, color, theme, name };
+     }
+diff --git a/dist/index.js b/dist/index.js
+index bbce91720e97e878b2eaeda4a65e32399540c2bc..fecd1c1e5adb6a40f15e0391ccfe905f334e888f 100644
+--- a/dist/index.js
++++ b/dist/index.js
+@@ -131,13 +131,13 @@ function createPlainShiki(shiki) {
+     const colorRanges = /* @__PURE__ */ new Map();
+     const loadLines = [];
+     function patch(loads, oldLoads) {
+-      for (const { range, name } of walkTokens(oldLoads)) {
++      for (const { range, name } of walkTokens(el, oldLoads)) {
+         const highlight = CSS.highlights.get(name);
+         highlight?.delete(range);
+         const ranges = colorRanges.get(name);
+         ranges?.delete(range);
+       }
+-      for (const { range, color, theme, name } of walkTokens(loads)) {
++      for (const { range, color, theme, name } of walkTokens(el, loads)) {
+         const isDefault = theme === defaultTheme;
+         let highlight = CSS.highlights.get(name);
+         if (!highlight) {
+@@ -254,13 +254,15 @@ function createPlainShiki(shiki) {
+     mount
+   };
+ }
+-function* walkTokens(loads) {
++function* walkTokens(el, loads) {
+   for (const { token, range } of loads) {
+     if (typeof token.htmlStyle !== "object") {
+       continue;
+     }
+     for (const theme in token.htmlStyle) {
+-      const color = token.htmlStyle[theme];
++      const color = token.htmlStyle[theme].startsWith("var(--")
++        ? window.getComputedStyle(el).getPropertyValue(token.htmlStyle[theme].replace("var(", "").replace(")", ""))
++        : token.htmlStyle[theme];
+       const name = `shiki-${theme}-${color.slice(1).toLowerCase()}`;
+       yield { range, color, theme, name };
+     }
