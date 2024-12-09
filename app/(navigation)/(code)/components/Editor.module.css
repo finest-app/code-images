@@ -3,14 +3,11 @@
   width: 100%;
   grid-template: 1fr / 1fr;
 
-  &:after {
-    content: attr(data-value) " ";
-    visibility: hidden;
-  }
-
   :global(.line) {
+    position: relative;
     display: inline-block;
     width: calc(100% + 32px);
+    flex-basis: 22.5px;
     padding: 0 16px;
     margin: 0 -16px;
     transition:
@@ -19,8 +16,8 @@
       margin 0.2s;
 
     &:before {
-      position: relative;
-      left: 6px;
+      position: absolute;
+      left: 54px;
       display: inline-block;
       width: 1rem;
       margin-right: 1.5rem;
@@ -29,12 +26,12 @@
       content: attr(data-line);
       opacity: 0;
       text-align: right;
+      text-wrap: nowrap;
       transition: opacity 0.2s;
     }
   }
 
   :global(.highlighted-line) {
-    position: relative;
     background-color: var(--ray-highlight) !important;
 
     &:after {
@@ -123,15 +120,19 @@
   margin: 0;
   background-color: initial !important;
   font-family: inherit;
+  overflow-wrap: anywhere;
   white-space: pre-wrap;
 }
 
 .formatted > pre > code {
+  display: flex;
+  flex-direction: column;
   font-family: inherit;
 }
 
 .plainText {
   color: var(--ray-foreground);
+  overflow-wrap: anywhere;
 }
 
 .jetBrainsMono {

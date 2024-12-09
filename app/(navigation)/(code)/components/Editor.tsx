@@ -259,7 +259,6 @@ function Editor() {
           ],
       )}
       style={{ "--editor-padding": "16px 16px 21px 16px", ...themeCSS } as React.CSSProperties}
-      data-value={code}
     >
       <textarea
         tabIndex={-1}
