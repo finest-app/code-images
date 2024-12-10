@@ -25,8 +25,8 @@
       color: var(--line-number);
       content: attr(data-line);
       opacity: 0;
+      overflow-wrap: normal;
       text-align: right;
-      text-wrap: nowrap;
       transition: opacity 0.2s;
     }
   }
