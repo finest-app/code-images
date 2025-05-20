@@ -74,6 +74,7 @@ export function InfoDialog() {
               <Shortcut keys={["C"]}>切换主题</Shortcut>
               <Shortcut keys={["B"]}>切换背景</Shortcut>
               <Shortcut keys={["D"]}>切换暗色模式</Shortcut>
+              <Shortcut keys={["N"]}>切换行号</Shortcut>
               <Shortcut keys={["P"]}>切换边距</Shortcut>
               <Shortcut keys={["L"]}>选择语言</Shortcut>
               <Shortcut keys={["⌥", "click"]}>突出显示行</Shortcut>
@@ -82,7 +83,6 @@ export function InfoDialog() {
               <Shortcut keys={["⌘", "S"]}>导出 PNG</Shortcut>
               <Shortcut keys={["⌘", "⇧", "S"]}>导出 SVG</Shortcut>
               {pngClipboardSupported && <Shortcut keys={["⌘", "C"]}>复制图片</Shortcut>}
-              {/* <Shortcut keys={["⌘", "⇧", "C"]}>复制链接</Shortcut> */}
               <Shortcut keys={["?"]}>查看快捷键</Shortcut>
             </div>
           </div>
