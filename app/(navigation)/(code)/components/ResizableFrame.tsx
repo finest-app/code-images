@@ -10,7 +10,7 @@ import XMarkIcon from "../assets/icons/x-mark-circle-filled-16.svg";
 
 type Handle = "right" | "left";
 
-let maxWidth = 920;
+let maxWidth = 1280;
 let minWidth = 520;
 
 const ResizableFrame: React.FC<PropsWithChildren> = ({ children }) => {
