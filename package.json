@@ -44,6 +44,7 @@
     "shiki": "^1.0.0",
     "sonner": "^1.5.0",
     "tailwind-merge": "^2.3.0",
+    "titleize": "^4.0.0",
     "url-loader": "^4.1.1"
   },
   "devDependencies": {

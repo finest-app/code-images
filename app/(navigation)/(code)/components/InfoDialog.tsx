@@ -77,6 +77,7 @@ export function InfoDialog() {
               <Shortcut keys={["N"]}>切换行号</Shortcut>
               <Shortcut keys={["P"]}>切换边距</Shortcut>
               <Shortcut keys={["L"]}>选择语言</Shortcut>
+              <Shortcut keys={["T"]}>切换字体</Shortcut>
               <Shortcut keys={["⌥", "click"]}>突出显示行</Shortcut>
               <Shortcut keys={["⌥", "shift", "F"]}>格式化代码</Shortcut>
               <Shortcut keys={["⌘", "K"]}>切换导出菜单</Shortcut>
